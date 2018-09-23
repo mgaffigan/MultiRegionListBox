@@ -4,9 +4,36 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultiRegionListBox"
+        xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.Resources>
+            <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
+                <local:SharedLayoutStackPanel IsItemsHost="True"/>
+            </ItemsPanelTemplate>
+
+            <local:SharedLayoutCoordinator x:Key="slc" ItemsSource="{Binding Path=MyItems}" />
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Margin="10,10,5,10" BorderBrush="Black" BorderThickness="1">
+            <ListBox 
+                local:SharedLayoutCoordinator.Region="{Binding Source={StaticResource slc}, Path=[0]}" 
+                ItemsPanel="{StaticResource ResourceKey=ItemsPanelTemplate}" />
+        </Border>
+        <Border Grid.Column="1" Margin="5,10" BorderBrush="Black" BorderThickness="1">
+            <ListBox 
+                local:SharedLayoutCoordinator.Region="{Binding Source={StaticResource slc}, Path=[1]}" 
+                ItemsPanel="{StaticResource ResourceKey=ItemsPanelTemplate}" />
+        </Border>
+        <Border Grid.Column="2" Margin="5,10,10,10" BorderBrush="Black" BorderThickness="1">
+            <ListBox 
+                local:SharedLayoutCoordinator.Region="{Binding Source={StaticResource slc}, Path=[2]}" 
+                ItemsPanel="{StaticResource ResourceKey=ItemsPanelTemplate}" />
+        </Border>
     </Grid>
 </Window>

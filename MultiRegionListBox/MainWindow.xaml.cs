@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,14 @@ namespace MultiRegionListBox
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly SharedLayoutCoordinator slc;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            this.slc = (SharedLayoutCoordinator)((Grid)this.Content).FindResource("slc");
+            slc.ItemsSource = typeof(Brushes).GetProperties().Select(p => p.Name).OrderBy(a => a).ToArray();
         }
     }
 }
