@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace MultiRegionListBox
 {
-    class SharedLayoutStackPanel : Panel, IScrollInfo
+    internal sealed class SharedLayoutStackPanel : Panel, IScrollInfo
     {
         internal const double _scrollLineDelta = 16.0;
 

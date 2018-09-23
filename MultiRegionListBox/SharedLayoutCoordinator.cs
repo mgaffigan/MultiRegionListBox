@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace MultiRegionListBox
 {
-    internal class SharedLayoutCoordinator : DependencyObject
+    internal sealed class SharedLayoutCoordinator : DependencyObject
     {
         private List<SharedLayoutRegion> Regions = new List<SharedLayoutRegion>();
         public SharedLayoutRegion this[int index]
